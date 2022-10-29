@@ -25,6 +25,17 @@ class LinkedList:
     current_node.next = new_node
     return
 
+  def display(self):
+    content = self.head
+
+    if content is None:
+      print("Lista vazia!")
+
+    while content:
+      print(content.dado)
+      content = content.next
+    print("------------")
+
   def lenght(self):
     if self.head == None:
       return 0
@@ -40,28 +51,44 @@ class LinkedList:
   def ordem_crescente(self):
     contador = 0
     current_node = self.head
+    next_node = current_node.next
 
-    while current_node:
-      if current_node.dado < current_node.next.dado:
-        current_node = current_node.next
-      else:
+    while current_node and next_node:
+      if current_node.dado > next_node.dado:
         contador += 1
-        current_node = current_node.next
+      current_node = next_node
+      next_node = next_node.next
+      
         
     if contador == 0:
-      return 1
+      return True
     else:
-      return 2
+      return False
         
 lista = LinkedList()
+lista2 = LinkedList()
 
 lista.add(1)
 lista.add(2)
 lista.add(3)
 
-resposta = lista.ordem_crescente()
+lista2.add(3)
+lista2.add(2)
+lista2.add(1)
 
-if resposta == 1:
+resposta = lista.ordem_crescente()
+resposta2 = lista2.ordem_crescente()
+
+print("")
+lista.display()
+if resposta == True:
+  print("Está em ordem crescente")
+else:
+  print("Não está em ordem crescente")
+
+print("")
+lista2.display()
+if resposta2 == True:
   print("Está em ordem crescente")
 else:
   print("Não está em ordem crescente")
