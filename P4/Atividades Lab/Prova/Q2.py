@@ -45,18 +45,6 @@ class BinaryTree:
                     atual.grau = 1
                     if atual.right:
                         atual.grau = 2
-                        if atual.prev:
-                            atual.grau = 3
-                            temp = atual
-                            atual = atual.left
-                            atual.prev = temp
-                        else:
-                            temp = atual
-                            atual = atual.left
-                            atual.prev = temp
-                    elif atual.prev:
-                        atual.grau = 2
-                        atual.check = True
                         temp = atual
                         atual = atual.left
                         atual.prev = temp
@@ -68,16 +56,9 @@ class BinaryTree:
 
                 elif atual.right and atual.grau == None:
                     atual.grau = 1
-                    if atual.prev:
-                        atual.grau = 2
-                        atual.check = True
-                        atual.prev = atual
-                        atual = atual.right
-                    else:
-                        atual.check = True
-                        atual.prev = atual
-                        atual = atual.right
-
+                    atual.check = True
+                    atual.prev = atual
+                    atual = atual.right
 
                 elif atual.right and atual.check != True:
                     atual.check = True
@@ -85,12 +66,12 @@ class BinaryTree:
                     atual = atual.right
                     atual.prev = temp
                 
-                elif atual.prev and atual.grau == None:
-                    atual.grau = 1
+                elif atual.grau == None:
+                    atual.grau = 0
                     print("O nó " + str(atual.data) + " é um nó folha ")
                     atual = atual.prev
 
-                elif atual.prev and atual.check == True:
+                elif atual.check == True:
                     atual = atual.prev
             
         else:

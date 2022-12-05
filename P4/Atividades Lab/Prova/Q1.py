@@ -45,21 +45,7 @@ class BinaryTree:
                     atual.grau = 1
                     if atual.right:
                         atual.grau = 2
-                        if atual.prev:
-                            atual.grau = 3
-                            print("O nó " + str(atual.data) + " tem grau: " + str(atual.grau))
-                            temp = atual
-                            atual = atual.left
-                            atual.prev = temp
-                        else:
-                            print("O nó " + str(atual.data) + " tem grau: " + str(atual.grau))
-                            temp = atual
-                            atual = atual.left
-                            atual.prev = temp
-                    elif atual.prev:
-                        atual.grau = 2
                         print("O nó " + str(atual.data) + " tem grau: " + str(atual.grau))
-                        atual.check = True
                         temp = atual
                         atual = atual.left
                         atual.prev = temp
@@ -72,17 +58,11 @@ class BinaryTree:
 
                 elif atual.right and atual.grau == None:
                     atual.grau = 1
-                    if atual.prev:
-                        atual.grau = 2
-                        print("O nó " + str(atual.data) + " tem grau: " + str(atual.grau))
-                        atual.check = True
-                        atual.prev = atual
-                        atual = atual.right
-                    else:
-                        print("O nó " + str(atual.data) + " tem grau: " + str(atual.grau))
-                        atual.check = True
-                        atual.prev = atual
-                        atual = atual.right
+                    print("O nó " + str(atual.data) + " tem grau: " + str(atual.grau))
+                    atual.check = True
+                    atual.prev = atual
+                    atual = atual.right
+
 
 
                 elif atual.right and atual.check != True:
@@ -91,12 +71,12 @@ class BinaryTree:
                     atual = atual.right
                     atual.prev = temp
                 
-                elif atual.prev and atual.grau == None:
-                    atual.grau = 1
+                elif atual.grau == None:
+                    atual.grau = 0
                     print("O nó " + str(atual.data) + " tem grau: " + str(atual.grau))
                     atual = atual.prev
 
-                elif atual.prev and atual.check == True:
+                elif atual.check == True:
                     atual = atual.prev
             
         else:
@@ -104,8 +84,10 @@ class BinaryTree:
             return
 
 tree = BinaryTree(10)
-tree.add(11)
+tree.add(12)
 tree.add(8)
 tree.add(9)
 tree.add(7)
+tree.add(11)
+tree.add(13)
 tree.contarGraus()
